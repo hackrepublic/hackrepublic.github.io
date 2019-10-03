@@ -14,8 +14,24 @@
   <meta name="keywords" content="HackRepublic, template, html, sass, jquery">
   <meta name="author" content="Bucky Maler">
   <link rel="stylesheet" href="assets/css/main.css">
+
 </head>
 <body>
+
+<script>
+
+function autoScroll(){
+
+scrollingElement = (document.scrollingElement || document.body);
+scrollingElement.scrollTop = scrollingElement.scrollHeight;
+
+
+}
+
+autoScroll();
+
+</script>
+
 <div id="particles"></div>
     <h1 class="ml13"></h1>
 
@@ -126,10 +142,9 @@
 
   
   
-    <!-- Load Facebook SDK for JavaScript -->
 	
-      <div class="fbb">		
-      <div id="fb-root"></div>	      
+	<!-- Load Facebook SDK for JavaScript -->
+      <div id="fb-root"></div>
       <script>
         window.fbAsyncInit = function() {
           FB.init({
@@ -150,15 +165,12 @@
       <div class="fb-customerchat"
         attribution=setup_tool
         page_id="111781406892525"
-		size="standard">
   theme_color="#0084ff"
   logged_in_greeting="Hi, Hello, Hola, Bonjour, Aloha, Ciao, Namaste! How can I help you?"
   logged_out_greeting="Hi, Hello, Hola, Bonjour, Aloha, Ciao, Namaste! How can I help you?"
   greeting_dialog_display="fade"
   greeting_dialog_delay="3">
       </div>
-      </div>
-
 <!-- notification for small viewports and landscape oriented smartphones -->
 <div class="device-notification">
   <a class="device-notification--logo" href="#0">
