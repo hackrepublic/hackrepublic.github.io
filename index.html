@@ -1,16 +1,129 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Global</title>
+  <title>HackRepublic</title>
   <meta charset="utf-8">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="description" content="HTML5 website template">
-  <meta name="keywords" content="global, template, html, sass, jquery">
+  <meta name="keywords" content="HackRepublic, template, html, sass, jquery">
   <meta name="author" content="Bucky Maler">
   <link rel="stylesheet" href="assets/css/main.css">
 </head>
 <body>
+<div id="particles"></div>
+    <h1 class="ml13"></h1>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script>
+        particlesJS(
+        "particles",
+        {"particles":{"number":{"value":53,"density":{"enable":true,"value_area":552.4044389642416}},"color":{"value":"#ffffff"},"shape":{"type":"circle","stroke":{"width":0,"color":"#000000"},"polygon":{"nb_sides":5},"image":{"src":"img/github.svg","width":100,"height":100}},"opacity":{"value":0.5,"random":false,"anim":{"enable":false,"speed":1,"opacity_min":0.1,"sync":false}},"size":{"value":3,"random":true,"anim":{"enable":false,"speed":40,"size_min":0.1,"sync":false}},"line_linked":{"enable":true,"distance":63.13193588162762,"color":"#ffffff","opacity":0.2525277435265105,"width":1},"move":{"enable":true,"speed":0.4,"direction":"none","random":false,"straight":false,"out_mode":"out","bounce":false,"attract":{"enable":false,"rotateX":600,"rotateY":1200}}},"interactivity":{"detect_on":"canvas","events":{"onhover":{"enable":false,"mode":"repulse"},"onclick":{"enable":true,"mode":"push"},"resize":true},"modes":{"grab":{"distance":400,"line_linked":{"opacity":1}},"bubble":{"distance":400,"size":40,"duration":2,"opacity":8,"speed":3},"repulse":{"distance":200,"duration":0.4},"push":{"particles_nb":4},"remove":{"particles_nb":2}}},"retina_detect":true}
+        );
+
+
+        var current = 0;
+        const messages = [
+            ""
+        ];
+
+        // Wrap every letter in a span
+        function start_animate() {
+            var textWrapper = document.querySelector('.ml13');
+            textWrapper.innerHTML = messages[current];
+            current = (current + 1) % messages.length;
+            textWrapper.innerHTML = textWrapper.textContent.replace(/[a-zA-Z0-9\*\.']+/g, "<span class='letter'>$&</span>");
+            do_animate();
+        }
+        function do_animate() {
+            anime.timeline({
+                loop: false
+            })
+            .add({
+                targets: '.ml13 .letter',
+                translateY: [50,0],
+                translateZ: 0,
+                opacity: [0,1],
+                easing: "easeOutExpo",
+                duration: 800,
+                delay: function(el, i) {
+                    return 1 + 10 * i;
+                }
+            }).add({
+                targets: '.ml13 .letter',
+                translateY: [0,-50],
+                opacity: [1,0],
+                easing: "easeInExpo",
+                duration: 2500,
+                delay: function(el, i) {
+                    return 1 + 10 * i;
+                },
+                complete: function(anim) {
+                    start_animate();
+                }
+            });
+
+        }
+        start_animate();
+
+
+
+
+
+        const colors = new Array([2,2,2],[3,26,45],[4,21,13],[16,4,21]);
+
+        var step = 0;
+        var colorIndices = [0,1,2,3];
+
+        //transition speed
+        var gradientSpeed = 0.002;
+
+        function updateGradient() {
+
+            var c0_0 = colors[colorIndices[0]];
+            var c0_1 = colors[colorIndices[1]];
+            var c1_0 = colors[colorIndices[2]];
+            var c1_1 = colors[colorIndices[3]];
+
+            var istep = 1 - step;
+            var r1 = Math.round(istep * c0_0[0] + step * c0_1[0]);
+            var g1 = Math.round(istep * c0_0[1] + step * c0_1[1]);
+            var b1 = Math.round(istep * c0_0[2] + step * c0_1[2]);
+            var color1 = "rgb("+r1+","+g1+","+b1+")";
+
+            var r2 = Math.round(istep * c1_0[0] + step * c1_1[0]);
+            var g2 = Math.round(istep * c1_0[1] + step * c1_1[1]);
+            var b2 = Math.round(istep * c1_0[2] + step * c1_1[2]);
+            var color2 = "rgb("+r2+","+g2+","+b2+")";
+
+            var particles = document.getElementById("particles");
+            particles.style.background = "-webkit-gradient(linear, left top, right top, from("+color1+"), to("+color2+"))";// -moz-linear-gradient(left, "+color1+" 0%, "+color2+" 100%)";
+            particles.style.background = "-moz-linear-gradient(left, "+color1+" 0%, "+color2+" 100%)";// -moz-linear-gradient(left, "+color1+" 0%, "+color2+" 100%)";
+
+            step += gradientSpeed;
+            if (step >= 1) {
+                step %= 1;
+                colorIndices[0] = colorIndices[1];
+                colorIndices[2] = colorIndices[3];
+
+                //pick two new target color indices
+                //do not pick the same as the current one
+                colorIndices[1] = ( colorIndices[1] + Math.floor( 1 + Math.random() * (colors.length - 1))) % colors.length;
+                colorIndices[3] = ( colorIndices[3] + Math.floor( 1 + Math.random() * (colors.length - 1))) % colors.length;
+            }
+        }
+
+        setInterval(updateGradient,9);
+    </script>
+
+
+
   
   <!-- Load Facebook SDK for JavaScript -->
       <div id="fb-root"></div>
@@ -42,10 +155,10 @@
 <!-- notification for small viewports and landscape oriented smartphones -->
 <div class="device-notification">
   <a class="device-notification--logo" href="#0">
-    <img src="assets/img/logo.png" alt="Global">
-    <p>Global</p>
+    <img src="assets/img/logo.png" alt="HackRepublic">
+    <p>HackRepublic</p>
   </a>
-  <p class="device-notification--message">Global has so much to offer that we must request you orient your device to portrait or find a larger screen. You won't be disappointed.</p>
+  <p class="device-notification--message">HackRepublic has so much to offer that we must request you orient your device to portrait or find a larger screen. You won't be disappointed.</p>
 </div>
 
 <div class="perspective effect-rotate-left">
@@ -54,8 +167,8 @@
       <div class="l-wrapper">
         <header class="header">
           <a class="header--logo" href="#0">
-            <img src="assets/img/logo.png" alt="Global">
-            <p>Global</p>
+            <img src="assets/img/logo.png" alt="HackRepublic">
+            <p>HackRepublic</p>
           </a>
           <button class="header--cta cta">Apply</button>
           <div class="header--nav-toggle">
@@ -76,7 +189,13 @@
           <li class="l-section section section--is-active">
             <div class="intro">
               <div class="intro--banner">
-                <h3>Bennett University presents<br>HACKREPUBLIC<br>2019</h3>
+			  
+			  
+			  
+			  
+			  <h1 class="line-1 anim-typewriter" ><p  style="color:blue; font-size:70%;">HackRepublic</p><p style="font-size:60%;">2019</p></h1>
+			  <!--<p class="marginUp">
+                
                 <button class="cta">Apply with Devfolio
                   <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 150 118" style="enable-background:new 0 0 150 118;" xml:space="preserve">
                   <g transform="translate(0.000000,118.000000) scale(0.100000,-0.100000)">
@@ -85,18 +204,38 @@
                   </svg>
                   <span class="btn-background"></span>
                 </button>
-                <img src="assets/img/introduction-visual.png" alt="Welcome">
+				
+				</p>-->
+				
+				
+				<div class="container-fluid" id="marginUp">
+  <div class="row">
+    <div class="col-sm-6">
+       <button class="cta">Apply with Devfolio
+                  <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 150 118" style="enable-background:new 0 0 150 118;" xml:space="preserve">
+                  <g transform="translate(0.000000,118.000000) scale(0.100000,-0.100000)">
+                    <path d="M870,1167c-34-17-55-57-46-90c3-15,81-100,194-211l187-185l-565-1c-431,0-571-3-590-13c-55-28-64-94-18-137c21-20,33-20,597-20h575l-192-193C800,103,794,94,849,39c20-20,39-29,61-29c28,0,63,30,298,262c147,144,272,271,279,282c30,51,23,60-219,304C947,1180,926,1196,870,1167z"/>
+                  </g>
+                  </svg>
+                  <span class="btn-background"></span>
+                </button>
+    </div>
+    <div class="col-sm-6" >
+      <div class="resize"></div>
+    </div>
+  </div>
+</div>
+                   <!--<div class="resize"></div>-->
               </div>
               <div class="intro--options">
-                <a href="#0">
+                <a  style="color:#fff" >
                   <h3>Date</h3>
                   <p>14-15th January,2019</p>
                 </a>
-                <a href="#0">
-                  <h3>Logo</h3>
-                  <p>Bennett University</p>
+                <a >
+                  <image height="40" src="./assets/img/white.gif"></image>
                 </a>
-                <a href="#0">
+                <a  style="color:#fff" >
                   <h3>Venue</h3>
                   <p>Bennett University</p>
                 </a>
