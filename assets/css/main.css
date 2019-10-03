@@ -428,6 +428,49 @@ body {
 }
 
 
+@media only screen 
+    and (min-device-width : 414px) 
+    and (max-device-width : 736px) 
+    and (orientation : landscape) {
+		
+		
+		.device-notification {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex
+    }
+      
+    }
+	
+@media screen 
+      and (device-width: 320px) 
+      and (device-height: 640px) 
+      and (-webkit-device-pixel-ratio: 2) 
+      and (orientation: landscape) {
+		  
+		  
+		  
+		.device-notification {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex}
+
+    }
+	
+@media only screen and (min-device-width : 360px) and (max-device-width : 640px) and (orientation: landscape){
+	
+	.device-notification {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex}
+
+
+}
+
+
 @media screen 
   and (device-width: 320px) 
   and (device-height: 640px) 
@@ -2105,13 +2148,6 @@ body {
         }
 
 
-.fbb{
-
-
-  height: 1%;
-  width:auto;
-
-}
 
 
 .resize{
@@ -2170,6 +2206,9 @@ body {
   margin-top:43%;
 }
 }
+
+
+
 ::-webkit-scrollbar {
   width: 15px;
 }
