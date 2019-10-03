@@ -125,7 +125,8 @@
 
 
   
-  <!-- Load Facebook SDK for JavaScript -->
+  
+    <!-- Load Facebook SDK for JavaScript -->
       <div id="fb-root"></div>
       <script>
         window.fbAsyncInit = function() {
@@ -139,7 +140,7 @@
         var js, fjs = d.getElementsByTagName(s)[0];
         if (d.getElementById(id)) return;
         js = d.createElement(s); js.id = id;
-        js.src = 'https://connect.facebook.net/en_US/sdk/xfbml.customerchat.js';
+        js.src = 'https://connect.facebook.net/en_US/sdk/xfbml.customerchat.js#xfbml=1&version=v4.0&autoLogAppEvents=1';
         fjs.parentNode.insertBefore(js, fjs);
       }(document, 'script', 'facebook-jssdk'));</script>
 
@@ -147,9 +148,12 @@
       <div class="fb-customerchat"
         attribution=setup_tool
         page_id="111781406892525"
-  theme_color="#000000"
-  logged_in_greeting="Hey! How can I help you?"
-  logged_out_greeting="Hey! How can I help you?">
+		size="standard">
+  theme_color="#0084ff"
+  logged_in_greeting="Hi, Hello, Hola, Bonjour, Aloha, Ciao, Namaste! How can I help you?"
+  logged_out_greeting="Hi, Hello, Hola, Bonjour, Aloha, Ciao, Namaste! How can I help you?"
+  greeting_dialog_display="fade"
+  greeting_dialog_delay="3">
       </div>
 
 <!-- notification for small viewports and landscape oriented smartphones -->
